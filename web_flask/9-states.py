@@ -18,7 +18,7 @@ def states(id=None):
     if id:
         states = states.get('State.{}'.format(id))
 
-    return render_template('9-states.html', states=states)
+    return render_template('9-states.html', states=states, found=True)
 
 
 @app.teardown_appcontext
