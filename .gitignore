@@ -54,3 +54,5 @@ docs/_build/
 test_params_create
 main_delete.py
 main.py
+100-dump.sql
+7-dump.sql
