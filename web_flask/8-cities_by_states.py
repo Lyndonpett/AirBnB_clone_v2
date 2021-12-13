@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/states_list')
-def statesList():
+@app.route('/cities_by_states')
+def citiesByStates():
     state = storage.all(State)
     return render_template('8-cities_by_states.html', States=state)
 
