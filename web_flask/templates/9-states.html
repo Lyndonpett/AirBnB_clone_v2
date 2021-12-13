@@ -8,7 +8,7 @@
         <H1>States</H1>
         <UL id="States">
             {% for state in states.values() | sort(attribute="name") %}
-            <LI>State: {{ state.id }}: <B>{{ state.name }}</B></LI>
+            <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
             {% endfor %}
         </UL>
         {% elif states != None %}
@@ -16,7 +16,7 @@
         <H3>Cities:</H3>
         <UL id='Cities'>
             {% for city in states.cities | sort(attribute="name") %}
-            <LI>City: {{ city.id }}: <B>{{ city.name }}</B></LI>
+            <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
             {% endfor %}
         </UL>
         {% else %}
