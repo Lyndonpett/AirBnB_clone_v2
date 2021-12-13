@@ -10,14 +10,19 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/states')
-@app.route('/states/<id>')
-def states(id=None):
-    states = storage.all(State)
+@app.route("/states/")
+def state_list():
+    states = storage.all(State).values()
+    return render_template('7-states_list.html', states=states)
 
+
+@app.route("/states/<id>")
+def state_by_id(id=None):
+    states_value = storage.all(State)
     if id:
-        states = states.get('State.{}'.format(id))
-
+        states = states_value.get('State.{}'.format(id))
+    else:
+        states = states_value.values()
     return render_template('9-states.html', states=states, found=True)
 
 
