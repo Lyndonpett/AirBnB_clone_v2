@@ -1,26 +1,25 @@
 #!/usr/bin/python3
-"""Starts a Flask app"""
+'''Flask app for states'''
 
 
-if __name__ == '__main__':
-    from flask import Flask, render_template
-    from models import storage
-    from models.state import State
+from flask import Flask, render_template
+from models import storage
+from models.state import State
 
-    app = Flask(__name__)
-    app.url_map.strict_slashes = False
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-    @app.route('/cities_by_states')
-    def cities_by_states():
-        """
-        sets the route for '/cities_by_states'
-        """
-        return render_template('8-cities_by_states.html',
-                               states=storage.all(State))
 
-    @app.teardown_appcontext
-    def teardown(context):
-        """resets storage after each request"""
-        storage.close()
+@app.route("/cities_by_states/")
+def c_list():
+    states = storage.all(State).values()
+    return render_template('8-cities_by_states.html', states=states)
 
-    app.run(host='0.0.0.0', port='5000')
+
+@app.teardown_appcontext
+def teardown(error):
+    storage.close()
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=5000)
